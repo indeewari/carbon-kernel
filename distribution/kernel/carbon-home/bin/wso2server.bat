@@ -135,7 +135,7 @@ set CMD=RUN %*
 PATH %PATH%;%JAVA_HOME%\bin\
 for /f tokens^=2-5^ delims^=.-_^" %%j in ('java -fullversion 2^>^&1') do set "JAVA_VERSION=%%j%%k"
 if %JAVA_VERSION% LSS 110 goto unknownJdk
-if %JAVA_VERSION% GTR 170 goto unknownJdk
+if %JAVA_VERSION% GTR 210 goto unknownJdk
 goto jdk17
 
 :unknownJdk
@@ -143,7 +143,7 @@ echo Starting WSO2 Carbon (in unsupported JDK)
 echo [ERROR] CARBON is supported only between JDK 11 and JDK 17
 goto jdk17
 
-:jdk17
+:allowedJdk
 goto runServer
 
 rem ----------------- Execute The Requested Command ----------------------------
